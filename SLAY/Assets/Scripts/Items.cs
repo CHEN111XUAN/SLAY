@@ -11,6 +11,7 @@ public struct ItemType
     public string description;
     public int maxStack; //最大堆叠数量
     public Sprite icon; //物品图标
+    public List<string> tags; //物品标签
 
     //public static string defaultPath = "Items";
 
@@ -34,6 +35,7 @@ public struct ItemType
         //this.icon = Resources.Load<Sprite>(iconPath);
         Sprite[] icons = Resources.LoadAll<Sprite>(iconPath);
         this.icon = icons[spriteIndex];
+        this.tags = new List<string>();
     }
 }
 
@@ -66,6 +68,14 @@ public class Item
         }
     }
 
+    // 设置物品为空
+    public void SetEmpty()
+    {
+        this.name = "";
+        this.data = "";
+        this.quantity = 0;
+    }
+
     public bool isEmpty
     {
         get
@@ -83,21 +93,82 @@ public class Item
 }
 
 [Serializable]
+public class Slot
+{
+    public Item item;
+
+    public Slot(Item item)
+    {
+        this.item = item;
+
+        //this.item = new Item(name, data, quantity);
+    }
+
+    // 获得格子的剩余空间
+    public int GetRemainSpace(string name = "")
+    {
+        if (name == "")
+        {
+            name = item.name;
+        }
+
+        if (item.isEmpty)
+        {
+            return ItemTypes.itemTypes[name].maxStack;
+        }
+        else
+        {
+            if (name == item.name)
+            {
+                return item.type.maxStack - item.quantity;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    public void AddToStack(int amount)
+    {
+        item.quantity += amount;
+        if (item.quantity > item.type.maxStack)
+        {
+            Debug.LogWarning(string.Format("错误：添加物品后，物品数量{0}超过最大堆叠数量{1}！", item.quantity, item.type.maxStack));
+        }  
+    }
+
+    public void RemoveFromStack(int amount)
+    {
+        item.quantity -= amount;
+        if (item.quantity < 0)
+        {
+            Debug.LogWarning(string.Format("错误：移除物品后，物品数量{0}为负！", item.quantity));
+        }
+
+        if (item.quantity <= 0)
+        {
+            item.SetEmpty();
+        }
+    }
+}
+
+[Serializable]
 public class Storage
 {
-    public List<Item> itemList;
+    public List<Slot> itemList;
 
     public Storage()
     {
-        itemList = new List<Item>();
+        itemList = new List<Slot>();
     }
 
     public void AddItem(Item item)
     {
-        itemList.Add(item);
-        //如果物品是可堆叠的，则检查库存中是否已经有该物品，并且只增加数量
-        if (item.type.stackable)
-        {
+        //slot = Slot(item);
+
+        //itemList.Add(item);
+
             //if (itemList.Contains(item))
             //{
             //    quantityList[itemList.IndexOf(item)] = quantityList[itemList.IndexOf(item)] + quantityAdded;
@@ -114,50 +185,34 @@ public class Storage
 
             //}
 
-        }
-        //else
-        //{
-        //    for (int i = 0; i < quantityAdded; i++)
-        //    {
-        //        if (itemList.Count < slotList.Count)
-        //        {
-        //            itemList.Add(item);
-        //            quantityList.Add(1);
-        //        }
-        //        else { }
-
-        //    }
-
-        //}
-
         //每次添加物品时更新库存UI
         //UpdateInventoryUI();
     }
 
     public void RemoveItem(Item item)
     {
-        itemList.Remove(item);
+        //itemList.Remove(item);
     }
 
-    public string DebugDisplayItems()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        foreach (var item in itemList)
-        {
-            stringBuilder.AppendLine($"Name: {item.name}, Data: {item.data}, Quantity: {item.quantity}");
-        }
-        return stringBuilder.ToString();
-    }
+    //public string DebugDisplayItems()
+    //{
+    //    StringBuilder stringBuilder = new StringBuilder();
+    //    foreach (var item in itemList)
+    //    {
+    //        stringBuilder.AppendLine($"Name: {item.name}, Data: {item.data}, Quantity: {item.quantity}");
+    //    }
+    //    return stringBuilder.ToString();
+    //}
 
     public Item GetItemByIndex(int index)
     {
-        if (index >= 0 && index < itemList.Count)
-        {
-            return itemList[index];
-        }
-        else
-        {
+    //    if (index >= 0 && index < itemList.Count)
+    //    {
+    //        return itemList[index];
+    //    }
+    //    else
+    //    {
             return null;
-        }
+    //    }
     }
 }

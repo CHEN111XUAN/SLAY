@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUIScript : MonoBehaviour
+public class InventoryBarScript : MonoBehaviour
 {
     public Storage inventory;
     public GameObject player;
