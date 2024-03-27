@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3015059770096381746}
   - component: {fileID: 1738869696432742161}
   m_Layer: 0
-  m_Name: Player
+  m_Name: MC
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1705251475, guid: 0c71e33fd6984864897de280fc1c67e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -206,8 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory:
-    itemList: []
-  joystick: {fileID: 0}
+    slotList: []
   speed: 4
   health: 0
   maxHealth: 100
@@ -244,10 +243,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09790468, y: 0.9618258}
+  m_Offset: {x: -0.17253697, y: 0.4393999}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -258,7 +257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8208094, y: 2.3152695}
+  m_Size: {x: 1.6715448, y: 1.2704176}
   m_EdgeRadius: 0
 --- !u!50 &3015059770096381746
 Rigidbody2D:

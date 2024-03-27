@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u256B\u2584\u2514\u2514_0"
+      name: ui
       rect:
         serializedVersion: 2
         x: 174
@@ -214,6 +214,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "\u256B\u2584\u2514\u2514_0"
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86284c99088edbb448132da8562fe8ac
+      internalID: -962181927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -225,7 +246,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u256B\u2584\u2514\u2514_0": -2000505926
+      ui: -2000505926
+      "\u256B\u2584\u2514\u2514_0": -962181927
       "\u256B\u2584\u2514\u2514_1": -1560951029
       "\u256B\u2584\u2514\u2514_2": 1378055353
       "\u256B\u2584\u2514\u2514_3": -584892836
